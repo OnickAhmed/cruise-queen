@@ -122,3 +122,24 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+#confirmationModal{
+    display: none;
+    color: #ddd;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 50px;
+    padding-left: 70px;
+    left: 30%;
+    top: 100px;
+    width: 40%;
+    height: 60%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.7);
+    font-family: sans-serif;
+}
+/* .hr-white{
+    border-top: 1px dotted white;
+    padding: 0;
+    margin: 0;
+} */

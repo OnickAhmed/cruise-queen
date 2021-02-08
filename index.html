@@ -31,11 +31,20 @@
     <!--Booking Section-->
     <main class="main-content container">
 
+        <div id="confirmationModal">
+            <h3>Congratulations!!!</h3>
+            <h3>Your booking confirmed.</h3>
+            <br>
+            <p>Subtotal: $<span id="modalSubtotal"></span></p>
+            <p>Vat: $<span id="modalVat"></span></p>
+            <!-- <hr class="hr-white"> -->
+            <p>Total: $<span id="modalTotal"></span></p>
+        </div>
+
         <div class="booking-content">
             <h1>Cruise Queen</h1>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
         </div>
-
 
         <div class="booking-form">
             <h3>Book Ocean Time</h3>
@@ -108,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <button id="btnBooked" class="btn-style">Book Now</button>
+            <button onclick="bookingConfirmation()" class="btn-style">Book Now</button>
         </div>
     </main>
     <script>
@@ -155,7 +164,15 @@
             document.getElementById("vat").innerText = vat;
             document.getElementById("total").innerText = total;
         }
-        
+        function bookingConfirmation(){
+            const subtotal = numberInitializer("subtotal", false);
+            const vat = numberInitializer("vat", false);
+            const total = numberInitializer("total", false);
+            document.getElementById("confirmationModal").style.display= "block";
+            document.getElementById("modalSubtotal").innerText = subtotal;
+            document.getElementById("modalVat").innerText = vat;
+            document.getElementById("modalTotal").innerText = total;
+        }
     </script>
     <!--Thank You-->
 </body>

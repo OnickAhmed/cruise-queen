@@ -35,10 +35,10 @@
             <h3>Congratulations!!!</h3>
             <h3>Your booking confirmed.</h3>
             <br>
-            <p>Subtotal: $<span id="modalSubtotal"></span></p>
-            <p>Vat: $<span id="modalVat"></span></p>
+            <p>Subtotal: $<span id="modal-Subtotal"></span></p>
+            <p>Vat: $<span id="modal-Vat"></span></p>
             <!-- <hr class="hr-white"> -->
-            <p>Total: $<span id="modalTotal"></span></p>
+            <p>Total: $<span id="modal-Total"></span></p>
         </div>
 
         <div class="booking-content">
@@ -69,7 +69,7 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($<span id="first-class-rate">150</span>)</label>
-                    <input id="first-class-count" class="inp-style inp-width" type="number" name="">
+                    <input id="first-class-count" class="inp-style inp-width" type="number" onchange="countTotal('count')">
                 </div>
                 <div class="plus-minus-btn">
                     <!-- <p><span id="first-class-plus" onclick="counting('first-class', true)">+</span> <span id="first-class-minus" onclick="counting('first-class', false)">-</span></p> -->
@@ -81,7 +81,7 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($<span id="economy-rate">100</span>)</label>
-                    <input id="economy-count" class="inp-style inp-width" type="number" name="">
+                    <input id="economy-count" class="inp-style inp-width" type="number" onchange="countTotal('count')">
                 </div>
                 <div class="plus-minus-btn">
                     <!-- <p><span id="economy-plus" onclick="counting('economy', true)">+</span> <span id="economy-minus" onclick="counting('economy', false)">-</span></p> -->
@@ -95,7 +95,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$<span id="subtotal">500</span></p>
+                        <p>$<span id="count-Subtotal">500</span></p>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$<span id="vat">50</span></p>
+                        <p>$<span id="count-Vat">50</span></p>
                     </div>
                 </div>
                 <hr>
@@ -113,11 +113,11 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$<span id="total">550</span></p>
+                        <p>$<span id="count-Total">550</span></p>
                     </div>
                 </div>
             </div>
-            <button onclick="bookingConfirmation()" class="btn-style">Book Now</button>
+            <button onclick="countTotal('modal')" class="btn-style">Book Now</button>
         </div>
     </main>
     <script>
@@ -129,6 +129,7 @@
             else{
                 input = document.getElementById(id).innerText;
             }
+            
             var count = parseInt(input);
             if (isNaN(count)) {
                 return count = 0;
@@ -150,29 +151,33 @@
                 count--;
             }
             document.getElementById(id).value = count;
-            countTotal();
+            countTotal("count");
         }
-        function countTotal(){
+        function countTotal(id){
             const firstClassAmount = numberInitializer("first-class-count", true);
             const economyAmount = numberInitializer("economy-count", true);
             const firstClassRate = numberInitializer("first-class-rate", false);
             const economyRate = numberInitializer("economy-rate", false);
             const subtotal = ((firstClassAmount * firstClassRate) + (economyAmount * economyRate));
+            console.log(subtotal);
             const vat = (subtotal * .1);
             const total = (subtotal + vat);
-            document.getElementById("subtotal").innerText = subtotal;
-            document.getElementById("vat").innerText = vat;
-            document.getElementById("total").innerText = total;
+            if (id == 'modal') {
+                document.getElementById("confirmationModal").style.display= "block";
+            }
+            document.getElementById(id + "-Subtotal").innerText = subtotal;
+            document.getElementById(id + "-Vat").innerText = vat;
+            document.getElementById(id + "-Total").innerText = total;
         }
-        function bookingConfirmation(){
-            const subtotal = numberInitializer("subtotal", false);
-            const vat = numberInitializer("vat", false);
-            const total = numberInitializer("total", false);
-            document.getElementById("confirmationModal").style.display= "block";
-            document.getElementById("modalSubtotal").innerText = subtotal;
-            document.getElementById("modalVat").innerText = vat;
-            document.getElementById("modalTotal").innerText = total;
-        }
+        // function bookingConfirmation(){
+        //     const subtotal = numberInitializer("subtotal", false);
+        //     const vat = numberInitializer("vat", false);
+        //     const total = numberInitializer("total", false);
+        //     document.getElementById("confirmationModal").style.display= "block";
+        //     document.getElementById("modalSubtotal").innerText = subtotal;
+        //     document.getElementById("modalVat").innerText = vat;
+        //     document.getElementById("modalTotal").innerText = total;
+        // }
     </script>
     <!--Thank You-->
 </body>

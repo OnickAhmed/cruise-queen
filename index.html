@@ -39,6 +39,8 @@
             <p>Vat: $<span id="modal-Vat"></span></p>
             <!-- <hr class="hr-white"> -->
             <p>Total: $<span id="modal-Total"></span></p>
+            <br>
+            <button class="btn btn-sm btn-danger" onclick="modalClose()">Close</button>
         </div>
 
         <div class="booking-content">
@@ -168,6 +170,14 @@
             document.getElementById(id + "-Subtotal").innerText = subtotal;
             document.getElementById(id + "-Vat").innerText = vat;
             document.getElementById(id + "-Total").innerText = total;
+        }
+        function modalClose(){
+            document.getElementById('confirmationModal').style.display = 'none';
+            document.getElementById('first-class-count').value = '';
+            document.getElementById('economy-count').value = '';
+            document.getElementById('count-Subtotal').innerText = '0';
+            document.getElementById('count-Vat').innerText = '0';
+            document.getElementById('count-Total').innerText = '0';
         }
         // function bookingConfirmation(){
         //     const subtotal = numberInitializer("subtotal", false);
